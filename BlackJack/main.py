@@ -6,7 +6,7 @@ class Card:
         self.rank = rank
 
     def __str__(self):
-        return self.rank["rank"] + " of " + self.suit
+        return f"{self.rank['rank']} of {self.suit}"
 
 
 # Defined a class for the deck of cards 
@@ -37,7 +37,7 @@ class Deck:
         # Combining the ranks and suits to make the deck
         for suit in suits:
             for rank in ranks:
-                self.cards.append([suit, rank])
+                self.cards.append(Card(suit, rank))
 
     #shuffling the deck
     def shuffle(self):
@@ -54,5 +54,19 @@ class Deck:
         
         return cards_delt
     
-card1 = Card("hearts", {"rank" : "Q", "value" : 10},)
-print(card1)
+class Hand:
+    def __init__(self, dealer = False):
+        self.cards = []
+        self.value = 0
+        self.dealer = dealer
+
+    def add_card(self, card_list):
+            self.cards.extend(card_list)
+
+
+deck = Deck()
+deck.shuffle()
+
+hand = Hand()
+hand.add_card(deck.deal(2))
+print(hand.cards)
