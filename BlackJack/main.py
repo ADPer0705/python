@@ -1,5 +1,14 @@
 import random
 
+class Card:
+    def __init__(self, suit, rank):
+        self.suit = suit
+        self.rank = rank
+
+    def __str__(self):
+        return self.rank["rank"] + " of " + self.suit
+
+
 # Defined a class for the deck of cards 
 class Deck:
     def __init__(self):
@@ -32,22 +41,18 @@ class Deck:
 
     #shuffling the deck
     def shuffle(self):
-        random.shuffle(self.cards)
+        if (len(self.cards)) > 1:
+            random.shuffle(self.cards)
 
     # dealing n number of cards from the deck
     def deal(self, number):
         cards_delt = []
         for i in range(number):
-            card = self.cards.pop()
-            cards_delt.append(card)
+            if (len(self.cards)) > 0:
+                card = self.cards.pop()
+                cards_delt.append(card)
         
         return cards_delt
     
-
-# instantiating a deck
-deck1 = Deck()
-deck2 = Deck()
-
-deck2.shuffle()
-print(deck1.cards)
-print(deck2.cards)
+card1 = Card("hearts", {"rank" : "Q", "value" : 10},)
+print(card1)
